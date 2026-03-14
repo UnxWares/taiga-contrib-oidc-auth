@@ -1,16 +1,20 @@
+# Stage 1: Build the OIDC plugin
 FROM node:21-alpine3.19 AS build
 
-WORKDIR /tmp/taiga-contrib-oidc-auth
-COPY --chown=taiga:taiga ./front /tmp/taiga-contrib-oidc-auth
+WORKDIR /build
+COPY ./front /build
 
-RUN npm install
-RUN npx gulp build
+RUN npm install && \
+    npx gulp build
 
 
+# Stage 2: Integrate with official Taiga frontend
 FROM taigaio/taiga-front:6.9.0
 
-COPY --from=build --chown=taiga:taiga /tmp/taiga-contrib-oidc-auth/dist /usr/share/nginx/html/plugins/oidc-auth
+# Copy the built OIDC plugin to the plugins directory
+COPY --from=build --chown=taiga:taiga /build/dist /usr/share/nginx/html/plugins/oidc-auth
 
+# Add OIDC configuration to the entrypoint and conf.json template
 COPY ./config_env_subst.snippet.sh ./conf.snippet.json /tmp/
 RUN sed -i '/Public registration and oauth/r /tmp/config_env_subst.snippet.sh' /docker-entrypoint.d/30_config_env_subst.sh && \
     sed -i '/"gitLabUrl": "\${GITLAB_URL}"/r /tmp/conf.snippet.json' /usr/share/nginx/html/conf.json.template && \
