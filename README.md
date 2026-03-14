@@ -1,9 +1,7 @@
 # Taiga Contrib OIDC Auth
 
-[![Docker Image Version](https://img.shields.io/docker/v/fabianmp/taiga-front?sort=semver&style=flat&logo=docker&label=taiga-front&cacheSeconds=3600)](https://hub.docker.com/repository/docker/fabianmp/taiga-front)
-[![Docker Image Version](https://img.shields.io/docker/v/fabianmp/taiga-back?sort=semver&style=flat&logo=docker&label=taiga-back&cacheSeconds=3600)](https://hub.docker.com/repository/docker/fabianmp/taiga-back)
-
-Forked from [kaleidos-ventures/taiga-contrib-oidc-auth](https://github.com/kaleidos-ventures/taiga-contrib-oidc-auth)
+Forked from [fabianmp/taiga-contrib-oidc-auth](https://github.com/fabianmp/taiga-contrib-oidc-auth) which is a fork of
+[kaleidos-ventures/taiga-contrib-oidc-auth](https://github.com/kaleidos-ventures/taiga-contrib-oidc-auth)
 and patched to be compatible with [robrotheram/taiga-contrib-openid-auth](https://github.com/robrotheram/taiga-contrib-openid-auth).
 
 This repository also provides Docker images built on top of the [official Taiga.io images](https://hub.docker.com/u/taigaio)
