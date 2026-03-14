@@ -7,7 +7,7 @@ RUN npm install
 RUN npx gulp build
 
 
-FROM ghcr.io/fabianmp/taiga-front:6.8.1-fabianmp.0.1.0
+FROM taigaio/taiga-front:6.9.0
 
 COPY --from=build --chown=taiga:taiga /tmp/taiga-contrib-oidc-auth/dist /usr/share/nginx/html/plugins/oidc-auth
 
